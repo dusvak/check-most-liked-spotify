@@ -19,9 +19,19 @@ This project was developed as a portfolio item to demonstrate a set of back-end,
 *   **Interactive Web Interface:** A simple Flask web application provides a user-friendly interface to connect with Spotify and view the analysis results.
 *   **Data Visualization:** Presents the top artists and genres as professional-looking bar charts generated using Matplotlib and Seaborn, embedded directly into the web page.
 
+## Important Notice About Live Demo
+
+Due to recent changes in Spotify's Developer Policy (effective May 15, 2025), this application operates in "Development Mode", which requires that users must be manually added into the allowlist in the Spotify Developer Dashboard. Check more about this changes [here](https://developer.spotify.com/documentation/web-api/concepts/quota-modes ).
+
+If you want to test this project with your personal Spotify Account, please send me an email: "williangiovannini.dev@gmail.com". 
+
+I will add your account into the allowlist as soon as possible.
+
 ## Live Demo
 
-*   You can access this project and see your most liked artists and genres here: https://check-most-liked-spotify.onrender.com/
+If you your e-mail is already added in my Spotify Developer Dashboard, you can check the project here:
+
+*   https://check-most-liked-spotify.onrender.com/
 
 ## Demo
 

@@ -21,11 +21,11 @@ This project was developed as a portfolio item to demonstrate a set of back-end,
 
 ## Live Demo
 
-*   (Coming Soon) - A live demo will be available here once deployed.
+*   You can access this project and see your most liked artists and genres here: https://check-most-liked-spotify.onrender.com/
 
 ## Demo
 
-*   (Coming Soon) - A gif demo will be available here once deployed.
+![Gif_demo](assets/gif_demo.gif)
 
 ## How to Run the Project Locally
 

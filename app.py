@@ -38,8 +38,7 @@ def login():
 def callback():
     sp_oauth = create_spotify_oauth_manager()
     code = request.args.get('code')
-    token_info = sp_oauth.get_access_token(code)
-    session['token_info'] = token_info
+    session['token_info'] = sp_oauth.get_access_token(code)
     return redirect('/analyze')
 
 @app.route('/logout')
@@ -55,13 +54,14 @@ def analyze():
     try:
         token_info = session.get('token_info')
 
-        sp_oauth = create_spotify_oauth_manager()
+        auth_manager = create_spotify_oauth_manager()
 
-        if sp_oauth.is_token_expired(token_info):
-            token_info = sp_oauth.refresh_access_token(token_info['refresh_token'])
+        if auth_manager.is_token_expired(token_info):
+            token_info = auth_manager.refresh_access_token(token_info['refresh_token'])
             session['token_info'] = token_info
 
         sp = spotipy.Spotify(auth=token_info['access_token'])
+        
         user_profile = sp.current_user()
         liked_songs = fetch_all_liked_songs(sp)
         top_artists = analyze_top_artists(liked_songs)

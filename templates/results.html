@@ -1,0 +1,64 @@
+<!-- templates/results.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Spotify Analysis</title>
+    <style>
+        body { font-family: sans-serif; background-color: #121212; color: #ffffff; padding: 20px; }
+        h1, h2 { color: #1DB954; text-align: center; }
+        .container { display: flex; justify-content: space-around; flex-wrap: wrap; }
+        .results-card ol {list-style-position: inside; text-align: center; padding-left: 0;}
+        ol { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        .count { color: #b3b3b3; }
+        .logout-link { text-align: center; margin-top: 30px; }
+        a { color: #1DB954; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Analysis for {{ user_name }}</h1>
+    
+    <div class="container">
+        <div class="results-card">
+            <h2>Your Top 10 Most Liked Artists</h2>
+            <ol>
+                {% for artist, count in top_artists %}
+                <li>{{ artist }} <span class="count">({{ count }} songs)</span></li>
+                {% else %}
+                <li>Could not find any artists.</li>
+                {% endfor %}
+            </ol>
+            
+            <div class="chart-wrapper">
+                {% if artist_chart %}
+                <img src="data:image/png;base64,{{ artist_chart }}" alt="Top Artists Chart">
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="results-card">
+            <h2>Your Top 10 Most Common Genres</h2>
+            <ol>
+                {% for genre, count in top_genres %}
+                <li>{{ genre }} <span class="count">(from {{ count }} artists)</span></li>
+                {% else %}
+                <li>Could not find any genres.</li>
+                {% endfor %}
+            </ol>
+
+            <div class="chart-wrapper">
+                {% if genre_chart %}
+                <img src="data:image/png;base64,{{ genre_chart }}" alt="Top Genres Chart">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="logout-link">
+        <a href="/logout">Analyze another account (Logout)</a>
+    </div>
+</body>
+</html>

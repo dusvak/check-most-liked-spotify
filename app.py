@@ -54,6 +54,13 @@ def analyze():
         return redirect('/')
     try:
         token_info = session.get('token_info')
+
+        sp_oauth = create_spotify_oauth_manager()
+
+        if sp_oauth.is_token_expired(token_info):
+            token_info = sp_oauth.refresh_access_token(token_info['refresh_token'])
+            session['token_info'] = token_info
+
         sp = spotipy.Spotify(auth=token_info['access_token'])
         user_profile = sp.current_user()
         liked_songs = fetch_all_liked_songs(sp)

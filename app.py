@@ -38,7 +38,9 @@ def login():
 def callback():
     sp_oauth = create_spotify_oauth_manager()
     code = request.args.get('code')
-    session['token_info'] = sp_oauth.get_access_token(code)
+    token_info = sp_oauth.get_access_token(code=code, as_dict=True, check_cache=False)
+    session['token_info'] = token_info
+    session.modified = True
     return redirect('/analyze')
 
 @app.route('/logout')
@@ -61,7 +63,7 @@ def analyze():
             session['token_info'] = token_info
 
         sp = spotipy.Spotify(auth=token_info['access_token'])
-        
+
         user_profile = sp.current_user()
         liked_songs = fetch_all_liked_songs(sp)
         top_artists = analyze_top_artists(liked_songs)
